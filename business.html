@@ -5,16 +5,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Nairobi Local Business Directory</title>
+        <link rel="stylesheet" href="business.css">
     </head>
     <body>
         <header>
             <h1>Nairobi Local Business Directory</h1>
             <nav>
                <ul>
-                <li><a href="#"></a>Home</li>
-                <li><a href="#"></a>Browse</li>
-                <li><a href="#"></a>About</li>
-                <li><a href="#"></a>List Your Business</li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Browse</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#create-account-section" id="create-account-link" aria-controls="create-account-section" aria-expanded="false">Create Account</a></li>
                </ul> 
 
             </nav>
@@ -51,10 +52,57 @@
                     <a href="#">view details</a>
                 </article>
             </section>
+
+            <section class="auth-section" id="create-account-section" hidden>
+                <h2>Create an account to log in</h2>
+                <p>Sign up first, then use your account details to log in and access your local business profile.</p>
+
+                <div class="auth-forms">
+                    <form class="signup-form">
+                        <h3>Create Account</h3>
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" name="full-name" placeholder="Your full name" required>
+
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+                        <button type="submit">Create Account</button>
+                    </form>
+
+                    <form class="login-form">
+                        <h3>Login</h3>
+                        <label for="login-email">Email Address</label>
+                        <input type="email" id="login-email" name="login-email" placeholder="you@example.com" required>
+
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="login-password" placeholder="Enter your password" required>
+
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            </section>
         </main>
 
         <footer>
             <p>&copy; 2026 Local Business Directory.</p>
         </footer>
+        <script>
+            const createAccountLink = document.getElementById("create-account-link");
+            const createAccountSection = document.getElementById("create-account-section");
+
+            createAccountLink.addEventListener("click", (event) => {
+                event.preventDefault();
+                createAccountSection.hidden = !createAccountSection.hidden;
+                createAccountLink.setAttribute("aria-expanded", String(!createAccountSection.hidden));
+
+                if (!createAccountSection.hidden) {
+                    createAccountSection.scrollIntoView({ behavior: "smooth", block: "center" });
+                    createAccountSection.querySelector(".signup-form input").focus({ preventScroll: true });
+                }
+            });
+        </script>
     </body>
 </html>
